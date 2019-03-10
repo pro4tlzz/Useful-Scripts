@@ -1,0 +1,22 @@
+For GivenName do 
+		```
+ 		=LEFT(A2,FIND(" ",A2)-1)
+		```
+For Surname do 
+		```
+		=RIGHT(A2,LEN(A2)-FIND("*",SUBSTITUTE(A2," ","*",LEN(A2)-LEN((SUBSTITUTE(A2," ",""))))))
+		```
+For SamAccountName do
+		```
+		=LOWER((LEFT(B2,1)&C2))
+		```
+For UserPrincipalName do
+		```
+		=LOWER((D2&"@yourdomain"))
+		```
+For Path do	```
+		yourouanddc
+		```
+For Email do 	```
+		=LOWER((B2&"."&C2&"@yourdomain"))
+		```

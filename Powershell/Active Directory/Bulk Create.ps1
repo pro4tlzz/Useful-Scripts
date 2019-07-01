@@ -1,5 +1,5 @@
 Import-Csv "C:\adusers.csv" | ForEach-Object {
-$upn = $_.SamAccountName + “@domain”
+$upn = $_.SamAccountName + "yourdomain"
 New-ADUser -Name $_.Name `
 -GivenName $_."GivenName" `
 -Surname $_."Surname" `
@@ -9,7 +9,7 @@ New-ADUser -Name $_.Name `
 -Path $_."Path" `
 -EmailAddress $_."EmailAddress" `
 -ChangePasswordAtLogon:$True `
--AccountPassword (ConvertTo-SecureString “” -AsPlainText -force) -Enabled $true
+-AccountPassword (ConvertTo-SecureString "insert_Password" -AsPlainText -force) -Enabled $true
 Add-ADPrincipalGroupMembership -Identity $_."samAccountName" -MemberOf ($_."Groups" -split',')
 New-ADOrganizationalUnit -Name $_."samAccountName" -Path "OU=yourOu,DC=your,DC=domain,DC=com"
 New-ADGroup -Name "Write_share_$($_."samAccountName")" -GroupCategory Security -GroupScope Domain -DisplayName "Write_Share_$($_."samAccountName")" -Path "OU=$($_."samAccountName"),OU=user,DC=your,DC=domain,DC=com"
